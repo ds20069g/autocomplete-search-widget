@@ -1,15 +1,3 @@
-// document.getElementById('search-input').addEventListener('keyup', async (e) => {
-    // Search comments
-    // Use this API: https://jsonplaceholder.typicode.com/comments?postId=3
-    // Display the results in the UI
-
-    // Things to look out for
-    // ---
-    // Use es6
-    // Error handling
-
-// })
-
 // Get the search input and search results elements from the DOM
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
@@ -18,7 +6,7 @@ const searchResults = document.getElementById('search-results');
 searchInput.addEventListener('keyup', async () => {
   try {
     const query = searchInput.value.trim();
-
+   
     // If the query is too short, clear the search results and return
     if (query.length < 2) {
       searchResults.innerHTML = '';
@@ -27,7 +15,12 @@ searchInput.addEventListener('keyup', async () => {
 
     // Fetch search results from the server using the proxy.php script
     const response = await fetch(`/php/public/index.php?q=${query}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
+   
     const data = await response.json();
 
     searchResults.innerHTML = '';
@@ -43,7 +36,3 @@ searchInput.addEventListener('keyup', async () => {
     searchResults.innerHTML = '<li class="error">An error occurred while searching. Please try again later.</li>';
   }
 });
-
-
-
-

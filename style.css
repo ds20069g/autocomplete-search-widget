@@ -31,7 +31,7 @@
 }
 
 #search-results li {
-  padding: 10px;
+  padding: 0px;
   border-radius: 5px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
